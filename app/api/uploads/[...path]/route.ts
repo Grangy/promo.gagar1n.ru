@@ -1,11 +1,15 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 import { join } from 'path';
 import { existsSync, readFileSync } from 'fs';
 
-export async function GET(
-  request: Request,
-  { params }: { params: { path: string[] } }
-) {
+interface Params {
+  params: {
+    path: string[];
+  };
+}
+
+export async function GET(request: NextRequest, context: Params) {
+  const { params } = context;
   const { path } = params;
 
   const filePath = join(process.cwd(), 'uploads', ...path);
