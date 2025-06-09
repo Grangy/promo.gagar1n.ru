@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Offer {
+  id    Int    @id @default(autoincrement())
+  type  String
+  color String
+  image String // Path to image, e.g., "/offer/fitness1.jpg"
+}
+
+model Event {
+  id        Int    @id @default(autoincrement())
+  title     String
+  date      String // e.g., "21 апреля" or "Скоро"
+  image     String // Path to image, e.g., "/event/event1.jpg"
+}
