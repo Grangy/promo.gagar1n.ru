@@ -7,7 +7,7 @@ const Header: React.FC<{ onBurgerClick: () => void }> = ({ onBurgerClick }) => {
       <div className="flex items-center">
         <Image
           src="/logo.png"
-          alt="Логотип_G1"
+          alt="Логотип_G2"
           width={40}
           height={40}
           className="w-auto h-10 object-contain"
