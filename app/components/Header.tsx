@@ -15,9 +15,9 @@ const Header: React.FC<{ onBurgerClick: () => void }> = ({ onBurgerClick }) => {
         />
       </div>
       <nav className="hidden md:flex space-x-6 text-sm font-semibold tracking-wide">
-        <a href="#" className="hover:text-red-400 transition">GRELKA SPA</a>
-        <a href="#" className="hover:text-red-400 transition">GUN1OR</a>
-        <a href="#" className="hover:text-red-400 transition">GAGAR1N</a>
+        <a href="https://grelkaspa.ru" className="hover:text-red-400 transition">GRELKA SPA</a>
+        <a href="https://gunior.ru" className="hover:text-red-400 transition">GUN1OR</a>
+        <a href="https://new.gagar1n.ru" className="hover:text-red-400 transition">GAGAR1N</a>
       </nav>
       <button id="burger" className="md:hidden text-white focus:outline-none" onClick={onBurgerClick}>
         <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
