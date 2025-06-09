@@ -41,10 +41,6 @@ const Offers: React.FC<{ onOpenPopup: () => void }> = ({ onOpenPopup }) => {
     fetchOffers();
   }, []);
 
-  // Размеры для карточек:
-  const mobileCardWidth = 270; // Можно подстроить под нужный размер экрана
-  const desktopCardWidth = 380;
-
   const mobileSettings = {
     infinite: items.length > 1,
     slidesToShow: 1,
@@ -64,7 +60,7 @@ const Offers: React.FC<{ onOpenPopup: () => void }> = ({ onOpenPopup }) => {
 
   const desktopSettings = {
     infinite: items.length > 3,
-    slidesToShow: items.length >= 3 ? 3 : items.length,
+    slidesToShow: items.length >= 4 ? 4 : items.length,
     slidesToScroll: 1,
     centerMode: false,
     centerPadding: '0px',
@@ -81,18 +77,11 @@ const Offers: React.FC<{ onOpenPopup: () => void }> = ({ onOpenPopup }) => {
 
   if (error) return <div className="text-center text-red-500">{error}</div>;
 
-const renderCard = (item: Offer, width: number) => {
-  const height = (width * 5) / 4;
-
+const renderCard = (item: Offer) => {
   return (
-    <div
-      key={item.id}
-      className="px-2"
-      style={{ width: `${width}px`, minWidth: `${width}px` }}
-    >
+    <div key={item.id} className="px-2">
       <div
-        className="relative rounded-3xl overflow-hidden bg-neutral-900 border border-white/10 shadow-xl hover:scale-[1.02] transition-transform duration-300 ease-in-out flex flex-col justify-end p-4"
-        style={{ height: `${height}px` }}
+        className="relative aspect-[4/5] w-full max-w-[270px] mx-auto rounded-3xl overflow-hidden bg-neutral-900 border border-white/10 shadow-xl hover:scale-[1.02] transition-transform duration-300 ease-in-out flex flex-col justify-end p-4"
       >
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-0" />
@@ -102,8 +91,8 @@ const renderCard = (item: Offer, width: number) => {
           src={item.image}
           alt={item.type}
           fill
-          sizes={`${width}px`}
-          className="object-cover"
+          className="object-contain"
+          sizes="100%"
         />
 
         {/* Label */}
@@ -127,6 +116,7 @@ const renderCard = (item: Offer, width: number) => {
 
 
 
+
   return (
     <section className="px-6 py-8 max-w-screen-xl mx-auto">
       <h2 className="text-3xl font-light mb-6">АКТУАЛЬНЫЕ ПРЕДЛОЖЕНИЯ</h2>
@@ -135,12 +125,12 @@ const renderCard = (item: Offer, width: number) => {
         {isMobile ? (
           <div className="overflow-visible">
             <Slider {...mobileSettings}>
-              {items.map((item) => renderCard(item, mobileCardWidth))}
+              {items.map((item) => renderCard(item))}
             </Slider>
           </div>
         ) : (
           <Slider {...desktopSettings}>
-            {items.map((item) => renderCard(item, desktopCardWidth))}
+            {items.map((item) => renderCard(item))}
           </Slider>
         )}
       </div>
