@@ -42,7 +42,7 @@ const Offers: React.FC<{ onOpenPopup: () => void }> = ({ onOpenPopup }) => {
   }, []);
 
   // Размеры для карточек:
-  const mobileCardWidth = 320; // Можно подстроить под нужный размер экрана
+  const mobileCardWidth = 270; // Можно подстроить под нужный размер экрана
   const desktopCardWidth = 380;
 
   const mobileSettings = {
@@ -81,46 +81,51 @@ const Offers: React.FC<{ onOpenPopup: () => void }> = ({ onOpenPopup }) => {
 
   if (error) return <div className="text-center text-red-500">{error}</div>;
 
-  const renderCard = (item: Offer, width: number) => {
-    const height = (width * 5) / 4; // высота по пропорции 4:5
+const renderCard = (item: Offer, width: number) => {
+  const height = (width * 5) / 4;
 
-    return (
-      <div key={item.id} className="px-2"> {/* Отступы между карточками */}
-        <div
-          className="relative rounded-3xl overflow-hidden bg-neutral-900 border border-white/10 shadow-xl hover:scale-[1.02] transition-transform duration-300 ease-in-out flex flex-col justify-end p-4 w-full max-w-[380px]"
-          style={{ height }}
+  return (
+    <div
+      key={item.id}
+      className="px-2"
+      style={{ width: `${width}px`, minWidth: `${width}px` }}
+    >
+      <div
+        className="relative rounded-3xl overflow-hidden bg-neutral-900 border border-white/10 shadow-xl hover:scale-[1.02] transition-transform duration-300 ease-in-out flex flex-col justify-end p-4"
+        style={{ height: `${height}px` }}
+      >
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-0" />
+
+        {/* Image */}
+        <Image
+          src={item.image}
+          alt={item.type}
+          fill
+          sizes={`${width}px`}
+          className="object-cover"
+        />
+
+        {/* Label */}
+        <span
+          className={`absolute top-3 left-3 ${item.color} text-white text-[11px] uppercase tracking-wider font-semibold px-3 py-1 rounded-full z-10 backdrop-blur bg-black/30 border border-white/10`}
         >
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-0" />
+          {item.type}
+        </span>
 
-          {/* Image */}
-          <Image
-            src={item.image}
-            alt={item.type}
-            width={width}
-            height={height}
-            loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-
-          {/* Label */}
-          <span
-            className={`absolute top-3 left-3 ${item.color} text-white text-[11px] uppercase tracking-wider font-semibold px-3 py-1 rounded-full z-10 backdrop-blur bg-black/30 border border-white/10`}
-          >
-            {item.type}
-          </span>
-
-          {/* Button */}
-          <button
-            className="bg-white/10 backdrop-blur text-white text-sm font-medium px-4 py-2 rounded-lg border border-white/20 hover:bg-white/20 transition relative z-10 mt-auto"
-            onClick={onOpenPopup}
-          >
-            Подробнее →
-          </button>
-        </div>
+        {/* Button */}
+        <button
+          className="bg-white/10 backdrop-blur text-white text-sm font-medium px-4 py-2 rounded-lg border border-white/20 hover:bg-white/20 transition relative z-10 mt-auto"
+          onClick={onOpenPopup}
+        >
+          Подробнее →
+        </button>
       </div>
-    );
-  };
+    </div>
+  );
+};
+
+
 
   return (
     <section className="px-6 py-8 max-w-screen-xl mx-auto">
