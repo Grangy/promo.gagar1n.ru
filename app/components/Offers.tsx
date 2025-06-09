@@ -77,9 +77,15 @@ const Offers: React.FC<{ onOpenPopup: () => void }> = ({ onOpenPopup }) => {
 
   if (error) return <div className="text-center text-red-500">{error}</div>;
 
-  const renderCard = (item: Offer, size: number) => (
+const renderCard = (item: Offer, width: number) => {
+  const height = (width * 5) / 4; // высота по пропорции 4:5
+
+  return (
     <div key={item.id} className="px-2">
-      <div className="relative rounded-3xl overflow-hidden aspect-square bg-neutral-900 border border-white/10 shadow-xl hover:scale-[1.02] transition-transform duration-300 ease-in-out flex flex-col justify-end p-4 w-full max-w-[380px] mx-auto">
+      <div
+        className="relative rounded-3xl overflow-hidden bg-neutral-900 border border-white/10 shadow-xl hover:scale-[1.02] transition-transform duration-300 ease-in-out flex flex-col justify-end p-4 w-full max-w-[380px] mx-auto"
+        style={{ height }} // задаём высоту по пропорции 4:5
+      >
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-0" />
 
@@ -87,14 +93,16 @@ const Offers: React.FC<{ onOpenPopup: () => void }> = ({ onOpenPopup }) => {
         <Image
           src={item.image}
           alt={item.type}
-          width={size}
-          height={size}
+          width={width}
+          height={height}
           loading="lazy"
           className="absolute inset-0 w-full h-full object-cover"
         />
 
         {/* Label */}
-        <span className={`absolute top-3 left-3 ${item.color} text-white text-[11px] uppercase tracking-wider font-semibold px-3 py-1 rounded-full z-10 backdrop-blur bg-black/30 border border-white/10`}>
+        <span
+          className={`absolute top-3 left-3 ${item.color} text-white text-[11px] uppercase tracking-wider font-semibold px-3 py-1 rounded-full z-10 backdrop-blur bg-black/30 border border-white/10`}
+        >
           {item.type}
         </span>
 
@@ -108,6 +116,8 @@ const Offers: React.FC<{ onOpenPopup: () => void }> = ({ onOpenPopup }) => {
       </div>
     </div>
   );
+};
+
 
   return (
     <section className="px-6 py-8 max-w-screen-xl mx-auto">
