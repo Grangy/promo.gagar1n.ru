@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { writeFile } from 'fs/promises';
+import { writeFile, mkdir } from 'fs/promises';
 import { join } from 'path';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -17,12 +17,18 @@ export async function POST(request: Request) {
     }
 
     const buffer = Buffer.from(await file.arrayBuffer());
-    const filename = `${uuidv4()}-${file.name.replace(/\s/g, '_')}`;
-    const folder = type === 'offer' ? 'offer' : 'event';
-    const filePath = join(process.cwd(), 'public', folder, filename);
+    const ext = file.name.split('.').pop();
+    const filename = `${uuidv4()}.${ext}`;
+    const uploadDir = join(process.cwd(), 'uploads', type);
 
+    // Создаем папку, если нет
+    await mkdir(uploadDir, { recursive: true });
+
+    const filePath = join(uploadDir, filename);
     await writeFile(filePath, buffer);
-    const imageUrl = `/${folder}/${filename}`;
+
+    // Возвращаем URL для доступа через API
+    const imageUrl = `/api/uploads/${type}/${filename}`;
 
     return NextResponse.json({ imageUrl }, { status: 200 });
   } catch (error) {
