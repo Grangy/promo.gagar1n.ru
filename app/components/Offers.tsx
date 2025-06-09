@@ -81,9 +81,9 @@ const renderCard = (item: Offer, width: number) => {
   const height = (width * 5) / 4; // высота по пропорции 4:5
 
   return (
-    <div key={item.id} className="px-2">
+    <div key={item.id} className="px-0">
       <div
-        className="relative rounded-3xl overflow-hidden bg-neutral-900 border border-white/10 shadow-xl hover:scale-[1.02] transition-transform duration-300 ease-in-out flex flex-col justify-end p-4 w-full max-w-[380px] mx-auto"
+        className="relative rounded-3xl overflow-hidden bg-neutral-900 border border-white/10 shadow-xl hover:scale-[1.02] transition-transform duration-300 ease-in-out flex flex-col justify-end p-4 w-full max-w-[380px]"
         style={{ height }} // задаём высоту по пропорции 4:5
       >
         {/* Gradient overlay */}
@@ -120,23 +120,22 @@ const renderCard = (item: Offer, width: number) => {
 
 
   return (
-    <section className="px-6 py-8 max-w-screen-xl mx-auto">
-      <h2 className="text-3xl font-light mb-6">АКТУАЛЬНЫЕ ПРЕДЛОЖЕНИЯ</h2>
+<section className="px-6 py-8 max-w-screen-xl mx-auto">
+  <h2 className="text-3xl font-light mb-6">АКТУАЛЬНЫЕ ПРЕДЛОЖЕНИЯ</h2>
 
-      <div className="mt-6">
-        {isMobile ? (
-          <Slider {...mobileSettings}>
-            {items.map((item) => renderCard(item, 400))}
-          </Slider>
-        ) : (
-          <div className="w-full max-w-[1200px] mx-auto">
-            <Slider {...desktopSettings}>
-              {items.map((item) => renderCard(item, 380))}
-            </Slider>
-          </div>
-        )}
-      </div>
-    </section>
+  <div className="mt-6 w-full">
+    {isMobile ? (
+      <Slider {...mobileSettings}>
+        {items.map((item) => renderCard(item, 400))}
+      </Slider>
+    ) : (
+      <Slider {...desktopSettings}>
+        {items.map((item) => renderCard(item, 380))}
+      </Slider>
+    )}
+  </div>
+</section>
+
   );
 };
 
