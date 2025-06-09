@@ -84,7 +84,8 @@ const renderCard = (item: Offer) => {
         className="relative aspect-[4/5] w-full max-w-[270px] mx-auto rounded-3xl overflow-hidden bg-neutral-900 border border-white/10 shadow-xl hover:scale-[1.02] transition-transform duration-300 ease-in-out flex flex-col justify-end p-4"
       >
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-0" />
+  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-0" />
+  <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-black/80 to-transparent z-5 pointer-events-none" />
 
         {/* Image */}
         <Image
