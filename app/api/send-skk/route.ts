@@ -25,7 +25,9 @@ export async function POST(request: Request) {
         text: messageText,
         parse_mode: 'Markdown',
         reply_markup: {
-          inline_keyboard: [[{ text: 'Принять обращение', callback_data: 'accept_skk' }]]
+          inline_keyboard: [
+            [{ text: 'Принять обращение', callback_data: 'accept_skk' }]
+          ]
         }
       }),
     });
