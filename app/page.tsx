@@ -37,7 +37,7 @@ export default function Home() {
               onClick={toggleSKKPopup}
               className="bg-red-800 text-white font-bold px-6 py-3 rounded-2xl hover:bg-red-700 transition-colors"
             >
-              Связаться с службой качества
+              Связаться со службой качества
             </button>
           </div>
 
