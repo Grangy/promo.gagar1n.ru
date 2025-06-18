@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 // Токен и чат можно вынести в .env.local
 const TELEGRAM_BOT_TOKEN = '7286138169:AAEbfdElJiRFpPJ8Dw9f43BJuORgyd6mdDc';
-const TELEGRAM_CHAT_ID = '683203214';
+const TELEGRAM_CHAT_ID = '-847699407';
 const TELEGRAM_API = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}`;
 
 export async function POST(request: Request) {
